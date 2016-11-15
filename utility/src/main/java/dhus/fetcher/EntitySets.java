@@ -1,4 +1,4 @@
-package dhus.listener;
+package dhus.fetcher;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +18,6 @@ import org.apache.olingo.odata2.api.edm.Edm;
 import org.apache.olingo.odata2.api.edm.EdmEntitySet;
 import org.apache.olingo.odata2.api.edm.EdmEntitySetInfo;
 import org.apache.olingo.odata2.api.edm.EdmException;
-import org.apache.olingo.odata2.api.edm.provider.EntitySet;
 import org.apache.olingo.odata2.api.ep.EntityProvider;
 import org.apache.olingo.odata2.api.ep.EntityProviderException;
 import org.apache.olingo.odata2.api.servicedocument.ServiceDocument;
