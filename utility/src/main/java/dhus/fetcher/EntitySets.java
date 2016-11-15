@@ -22,13 +22,6 @@ import org.apache.olingo.odata2.api.ep.EntityProvider;
 import org.apache.olingo.odata2.api.ep.EntityProviderException;
 import org.apache.olingo.odata2.api.servicedocument.ServiceDocument;
 
-/*
- * TODO rework the class:
- * - getEdm() and getServiceDocument() should become static
- * - make authStringEnc from getInstance() a field?
- * - getInstance() shouldn't be a factory
- * - getNames and getProperties should be static
- */
 public class EntitySets {
    
    private static HttpURLConnection getConnection(String serviceUrl) throws IOException {
@@ -53,36 +46,6 @@ public class EntitySets {
       HttpURLConnection connection = getConnection(url);
       InputStream content = connection.getInputStream();
       return EntityProvider.readServiceDocument(content, "application/xml");
-   }
-   
-   @Deprecated
-   public static List<String> getNames(Edm edm) throws EdmException {
-      List<String> names = new ArrayList<String>();
-      names.add("entitySetName");
-      for(EdmEntitySet entitySet : edm.getEntitySets()) {
-         names.add(entitySet.getName());
-      }
-      
-      return names;
-   }
-   
-   @Deprecated
-   public static Map<String, List<String>> getProperties(Edm edm) throws EdmException {
-      Map<String, List<String>> entitySetsProperties = new HashMap<String, List<String>>();
-      for(EdmEntitySet entitySet : edm.getEntitySets()) {
-         List<String> csvLine = new ArrayList<>();
-         csvLine.add("property, eqValue, neValue");
-         
-         for(String propertyName : entitySet.getEntityType().getPropertyNames()) {
-            csvLine.add(propertyName+", '', ''");
-         }
-         
-         entitySetsProperties.put(
-               entitySet.getName(),
-               csvLine);
-      }
-      
-      return entitySetsProperties;
    }
    
    public static List<String> getNames(ServiceDocument serviceDocument) throws EntityProviderException {
@@ -121,13 +84,13 @@ public class EntitySets {
       Edm edm = EntitySets.getEdm("http://localhost:8081/odata/v1/$metadata");
       
       List<String> names = EntitySets.getNames(serviceDocument);
-      Path file = Paths.get("src/test/resources/gatling/entitysets.csv");
+      Path file = Paths.get("../gatling/data/entitysets.csv");
       Files.write(file, names, Charset.forName("UTF-8"));
       System.out.println("EntitySets done.");
       
       Map<String, List<String>> properties = EntitySets.getProperties(serviceDocument, edm);
       for(String entitySetName : properties.keySet()) {
-         Path propertyFile = Paths.get("src/test/resources/gatling/"+entitySetName+"-properties.csv");
+         Path propertyFile = Paths.get("../gatling/data/"+entitySetName+"-properties.csv");
          Files.write(propertyFile, properties.get(entitySetName), Charset.forName("UTF-8"));
       }
       System.out.println("Properties done.");
