@@ -92,7 +92,7 @@ public class EntitySets {
       if (args.length >= 2) {
          outputPath = args[1];
       } else {
-         outputPath = "src/test/resources/gatling/";
+         outputPath = "../gatling/data/";
       }
 
       ServiceDocument serviceDocument = EntitySets.getServiceDocument(serviceUrl);
