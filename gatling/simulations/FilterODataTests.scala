@@ -73,8 +73,9 @@ class FilterODataTests extends Simulation {
     	filterConnections.inject(rampUsers(1) over (20 seconds)), // scenario will be executed i times over n seconds
     	filterNetworks.inject(rampUsers(1) over (20 seconds)),
     	*/
-    	filterProducts.inject(rampUsers(1) over (20 seconds)),
+    	filterProducts.inject(rampUsers(1) over (20 seconds))
     	/*
+    	,
     	filterSynchronizers.inject(rampUsers(1) over (20 seconds)),
     	filterUsers.inject(rampUsers(1) over (20 seconds)),
     	filterIngests.inject(rampUsers(1) over (20 seconds)),
