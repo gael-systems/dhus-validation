@@ -32,10 +32,10 @@ class FilterODataTests extends Simulation {
 				.get("/").check(status.is(200)))
 			.pause(1)
 			.feed(properties)
-			.exec(http(entitySetName)
+			.exec(http(entitySetName+" ${property} eq")
 				.get("/"+entitySetName+"?$filter=${property} eq ${eqValue}").check(status.is(200)))
 			.pause(1)
-			.exec(http(entitySetName)
+			.exec(http(entitySetName+" ${property} ne")
 				.get("/"+entitySetName+"?$filter=${property} ne ${neValue}").check(status.is(200)))
 		} 
 	}
@@ -45,7 +45,7 @@ class FilterODataTests extends Simulation {
 	object Connections extends EntitySet("Connections", csv("Connections-properties.csv").queue, 9)
 	object Networks extends EntitySet("Networks", csv("Networks-properties.csv").queue, 1)
 	*/
-	object Products extends EntitySet("Products", csv("custom-Products-properties.csv").queue, 6)
+	object Products extends EntitySet("Products", csv("custom-Products-properties.csv").queue, 3)
 	/*
 	object Synchronizers extends EntitySet("Synchronizers", csv("Synchronizers-properties.csv").queue, 18)
 	object Users extends EntitySet("Users", csv("Users-properties.csv").queue, 14)
