@@ -45,10 +45,12 @@ class FilterODataTests extends Simulation {
 	object Connections extends EntitySet("Connections", csv("Connections-properties.csv").queue, 9)
 	object Networks extends EntitySet("Networks", csv("Networks-properties.csv").queue, 1)
 	*/
-	object Products extends EntitySet("Products", csv("custom-Products-properties.csv").queue, 3)
+	object Products extends EntitySet("Products", csv("custom-Products-properties.csv").queue, 6)
 	/*
 	object Synchronizers extends EntitySet("Synchronizers", csv("Synchronizers-properties.csv").queue, 18)
-	object Users extends EntitySet("Users", csv("Users-properties.csv").queue, 14)
+	*/
+	object Users extends EntitySet("Users", csv("custom-Users-properties.csv").queue, 12)
+	/*
 	object Ingests extends EntitySet("Ingests", csv("Ingests-properties.csv").queue, 6)
 	object UserSynchronizers extends EntitySet("UserSynchronizers", csv("UserSynchronizers-properties.csv").queue, 15)
 	object Collections extends EntitySet("Collections", csv("Collections-properties.csv").queue, 2)
@@ -61,7 +63,9 @@ class FilterODataTests extends Simulation {
 	val filterProducts = scenario("Filter Products").exec(Products.filter)
 	/*
 	val filterSynchronizers = scenario("Filter Synchronizers").exec(Synchronizers.filter)
+	*/
 	val filterUsers = scenario("Filter Users").exec(Users.filter)
+	/*
 	val filterIngests = scenario("Filter Ingests").exec(Ingests.filter)
 	val filterUserSynchronizers = scenario("Filter UserSynchronizers").exec(UserSynchronizers.filter)
 	val filterCollections = scenario("Filter Collections").exec(Collections.filter)
@@ -73,11 +77,9 @@ class FilterODataTests extends Simulation {
     	filterConnections.inject(rampUsers(1) over (20 seconds)), // scenario will be executed i times over n seconds
     	filterNetworks.inject(rampUsers(1) over (20 seconds)),
     	*/
-    	filterProducts.inject(rampUsers(1) over (20 seconds))
-    	/*
-    	,
-    	filterSynchronizers.inject(rampUsers(1) over (20 seconds)),
-    	filterUsers.inject(rampUsers(1) over (20 seconds)),
+    	filterProducts.inject(rampUsers(1) over (20 seconds))/*,
+    	filterSynchronizers.inject(rampUsers(1) over (20 seconds))*/,
+    	filterUsers.inject(rampUsers(1) over (20 seconds))/*,
     	filterIngests.inject(rampUsers(1) over (20 seconds)),
     	filterUserSynchronizers.inject(rampUsers(1) over (20 seconds)),
     	filterCollections.inject(rampUsers(1) over (20 seconds)),
