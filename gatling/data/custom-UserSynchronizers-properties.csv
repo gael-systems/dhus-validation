@@ -1,0 +1,16 @@
+property, eqValue, neValue
+Id, 0, 0
+Label, '', ''
+year(CreationDate), 2016, 2016
+year(ModificationDate), 2016, 2016
+Request, '', ''
+Schedule, '', ''
+Status, '', ''
+year(StatusDate), 2016, 2016
+StatusMessage, '', ''
+ServiceUrl, '', ''
+ServiceLogin, '', ''
+ServicePassword, '', ''
+Cursor, 0, 0
+PageSize, 0, 0
+Force, 0, 0
