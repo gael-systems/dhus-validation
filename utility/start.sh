@@ -141,12 +141,12 @@ then
    fi
 fi
 
-nohup java -server -XX:MaxPermSize=256m -Xms12g -Xmx12g          \
+nohup java -server -XX:MaxPermSize=256m -Xms4g -Xmx4g      \
      -Djava.library.path=${NATIVE_LIBRARIES}               \
      -Duser.timezone=UTC                                   \
      -Dcom.sun.media.jai.disableMediaLib=true              \
      -Dsun.zip.disableMemoryMapping=true                   \
-     -Ddhus.scalability.active=true                        \
+     -Ddhus.scalability.active=false                       \
      -Ddhus.scalability.local.ip=127.0.0.1   \
      -cp "etc:lib/*" fr.gael.dhus.DHuS &
 
