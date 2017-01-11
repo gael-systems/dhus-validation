@@ -44,7 +44,7 @@ class FilterODataTests extends Simulation {
 	object Connections extends EntitySet("Connections", csv("custom-Connections-properties.csv").queue, 9)
 	object Networks extends EntitySet("Networks", csv("custom-Networks-properties.csv").queue, 1)
 	object Products extends EntitySet("Products", csv("custom-Products-properties.csv").queue, 6)
-	object Synchronizers extends EntitySet("Synchronizers", csv("custom-Synchronizers-properties.csv").queue, 18)
+	object Synchronizers extends EntitySet("Synchronizers", csv("custom-Synchronizers-properties.csv").queue, 17)
 	object Users extends EntitySet("Users", csv("custom-Users-properties.csv").queue, 12)
 	object Ingests extends EntitySet("Ingests", csv("custom-Ingests-properties.csv").queue, 6)
 	object UserSynchronizers extends EntitySet("UserSynchronizers", csv("custom-UserSynchronizers-properties.csv").queue, 15)
