@@ -12,7 +12,6 @@ PageSize, 0, 0
 CopyProduct, false, false
 FilterParam, '', ''
 SourceCollection, '', ''
-year(LastIngestionDate), 0, 0
 Request, '', ''
 Status, '', ''
 year(StatusDate), 0, 0
