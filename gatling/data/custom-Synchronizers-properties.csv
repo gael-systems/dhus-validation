@@ -6,7 +6,6 @@ year(ModificationDate), 0, 0
 ServiceUrl, '', ''
 ServiceLogin, '', ''
 ServicePassword, '', ''
-RemoteIncoming, '', ''
 Schedule, '', ''
 PageSize, 0, 0
 CopyProduct, false, false
