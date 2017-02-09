@@ -1,9 +1,10 @@
 import io.gatling.core.Predef._
+import io.gatling.core.feeder.FeederBuilder
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
 import java.util.concurrent.ThreadLocalRandom
 
-class SimpleODataTests extends Simulation {
+class FormatODataTests extends Simulation {
 
 	// configuration
 	// with dummy browser informations
@@ -18,16 +19,21 @@ class SimpleODataTests extends Simulation {
 
 	val sets = csv("entitysets.csv").queue // contains the names of entity sets
 
-	object EntitySets {
+	// browse all formats available on all entity sets
+	object Formats {
 		val browse = exec(http("Service")
 				.get("/").check(status.is(200)))
 			.pause(1)
 			.feed(sets)
-			.exec(http("Entity Set ${entitySetName}")
-				.get("/${entitySetName}").check(status.is(200)))
+			.exec(http("Entity Set ${entitySetName} XML format")
+				.get("/${entitySetName}?$format=application/xml").check(status.is(200)))
+			.exec(http("Entity Set ${entitySetName} JSON format")
+				.get("/${entitySetName}?$format=application/json").check(status.is(200)))
+			.exec(http("Entity Set ${entitySetName} CSV format")
+				.get("/${entitySetName}?$format=text/csv").check(status.is(200)))
 	}
 
-	val browseEntitySets = scenario("Browse Entity Sets").exec(EntitySets.browse)
+	val browseEntitySets = scenario("OData Formats").exec(Formats.browse)
 
 	setUp(
     	browseEntitySets.inject(rampUsers(10) over (10 seconds)) // scenario will be executed i times over n seconds

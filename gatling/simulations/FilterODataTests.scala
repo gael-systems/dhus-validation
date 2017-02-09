@@ -43,14 +43,15 @@ class FilterODataTests extends Simulation {
 	// fields in properties feeders: property, eqValue, neValue
 	object Connections extends EntitySet("Connections", csv("custom-Connections-properties.csv").queue, 9)
 	object Networks extends EntitySet("Networks", csv("custom-Networks-properties.csv").queue, 1)
-	object Products extends EntitySet("Products", csv("custom-Products-properties.csv").queue, 6)
+	object Products extends EntitySet("Products", csv("custom-Products-properties.csv").queue, 8)
 	object Synchronizers extends EntitySet("Synchronizers", csv("custom-Synchronizers-properties.csv").queue, 16)
 	object Users extends EntitySet("Users", csv("custom-Users-properties.csv").queue, 12)
 	object Ingests extends EntitySet("Ingests", csv("custom-Ingests-properties.csv").queue, 6)
 	object UserSynchronizers extends EntitySet("UserSynchronizers", csv("custom-UserSynchronizers-properties.csv").queue, 15)
 	object Collections extends EntitySet("Collections", csv("custom-Collections-properties.csv").queue, 2)
 	object Classes extends EntitySet("Classes", csv("custom-Classes-properties.csv").queue, 2)
-	
+	object DeletedProducts extends EntitySet("DeletedProducts", csv("custom-DeletedProducts-properties.csv").queue, 10)
+
 	val filterConnections = scenario("Filter Connections").exec(Connections.filter)
 	val filterNetworks = scenario("Filter Networks").exec(Networks.filter)
 	val filterProducts = scenario("Filter Products").exec(Products.filter)
@@ -60,6 +61,7 @@ class FilterODataTests extends Simulation {
 	val filterUserSynchronizers = scenario("Filter UserSynchronizers").exec(UserSynchronizers.filter)
 	val filterCollections = scenario("Filter Collections").exec(Collections.filter)
 	val filterClasses = scenario("Filter Classes").exec(Classes.filter)
+	val filterDeletedProducts = scenario("Filter DeletedProducts").exec(DeletedProducts.filter)
 	
 	setUp(
     	filterConnections.inject(rampUsers(1) over (20 seconds)), // scenario will be executed i times over n seconds
@@ -70,7 +72,8 @@ class FilterODataTests extends Simulation {
     	filterIngests.inject(rampUsers(1) over (20 seconds)),
     	filterUserSynchronizers.inject(rampUsers(1) over (20 seconds)),
     	filterCollections.inject(rampUsers(1) over (20 seconds)),
-    	filterClasses.inject(rampUsers(1) over (20 seconds))
+    	filterClasses.inject(rampUsers(1) over (20 seconds)),
+    	filterDeletedProducts.inject(rampUsers(1) over (20 seconds))
   	).assertions(global.failedRequests.percent.is(0))
   	.protocols(httpConf)
 }
