@@ -1,12 +1,12 @@
 property, eqValue, neValue
 Id, 0, 0
 Label, '', ''
-year(CreationDate), 2016, 2016
-year(ModificationDate), 2016, 2016
+CreationDate, datetime'2016-12-20T11:52:23.787', datetime'2016-12-20T11:52:23.787'
+ModificationDate, datetime'2016-12-20T11:52:23.787', datetime'2016-12-20T11:52:23.787'
 Request, '', ''
 Schedule, '', ''
 Status, '', ''
-year(StatusDate), 2016, 2016
+StatusDate, datetime'2016-12-20T11:52:23.787', datetime'2016-12-20T11:52:23.787'
 StatusMessage, '', ''
 ServiceUrl, '', ''
 ServiceLogin, '', ''

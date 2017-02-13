@@ -10,4 +10,4 @@ Domain, 'Climate', 'Climate'
 SubDomain, 'Other', 'Other'
 Usage, 'Marketing', 'Marketing'
 SubUsage, 'Other', 'Other'
-year(Created), 2016, 2016
+Created, datetime'2016-12-20T11:50:58.216', datetime'2016-12-20T11:50:58.216'
